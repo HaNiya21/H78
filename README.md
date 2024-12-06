@@ -1,3 +1,34 @@
+backend/
+├── server.js
+├── routes/
+│   ├── auth.js
+│   └── data.js
+├── models/
+│   └── User.js
+├── middleware/
+│   └── authMiddleware.js
+└── config/
+    └── db.js
+├── .env
+├── script/
+│   ├── createTestUser.js
+
+
+frontend/
+├── src/
+│   ├── components/
+│   │   ├── Login.js
+│   │   ├── Dashboard.js
+│   │   ├── Summary.js
+│   │   ├── Reports.js
+│   │   └── Navbar.js
+│   ├── App.js
+│   └── index.js
+│   └── setupTest.js
+├── package.json
+├── .env
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
