@@ -25,7 +25,7 @@ app.use('/api/data', dataRoute); // Register the data routes
 
 const PORT = process.env.PORT || 3000;
 
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     app.listen(PORT, () => {
       console.log(`Backend is running on port ${PORT}`);
