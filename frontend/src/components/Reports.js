@@ -9,16 +9,14 @@ function Reports() {
     const fetchAIUseCasesData = async () => {
       const token = localStorage.getItem('token');
       try {
-        console.log('Token used for API call:', token);
         const res = await axios.get('/api/data/ai-use-cases', {
           headers: { Authorization: `Bearer ${token}` },
         });
         console.log('API Response:', res.data);
         setData(res.data);
       } catch (err) {
-        console.error('Error fetching data:', err);
+        console.error('Error fetching data:', err.response?.data || err.message);
         if (err.response && err.response.status === 401) {
-          console.error('Unauthorized. Redirecting to login.');
           localStorage.removeItem('token');
           window.location.href = '/login';
         } else {

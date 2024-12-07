@@ -12,13 +12,12 @@ function Summary() {
         const res = await axios.get('/api/data/iot-devices-growth', {
           headers: { Authorization: `Bearer ${token}` }, // Add Authorization header
         });
-        console.log(res.data); // Display the fetched data
+        console.log('Fetched Data:', res.data); // Display the fetched data
         setData(res.data); // Set state with the fetched data
 
         
       } catch (err) {
-        console.error(err);
-        if (err.response && err.response.status === 401) {
+        console.error('Error fetching IoT Devices Data:', err.response?.data || err.message);        if (err.response && err.response.status === 401) {
           localStorage.removeItem('token'); // Clear invalid token
           window.location.href = '/login'; // Redirect to login
         }

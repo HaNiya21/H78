@@ -1,4 +1,5 @@
-# H78
+# H78 
+
 
 ## Overview
 H78 is a healthcare-focused web application built using the MERN stack (MongoDB, Express.js, React, and Node.js). It provides user authentication, interactive charts powered by D3.js, and insights into emerging healthcare technologies. The application is hosted on a single server with NGINX serving the frontend and proxying API calls to the backend.

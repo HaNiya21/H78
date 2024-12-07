@@ -13,9 +13,10 @@ function Blockchain() {
         const res = await axios.get('/api/data/blockchain-use', {
           headers: { Authorization: `Bearer ${token}` },
         });
+        console.log('Fetched Blockchain Data:', res.data); // Display the fetched data
         setBlockchainData(res.data); // Set state with the fetched data
       } catch (err) {
-        console.error(err);
+        console.error('Error fetching Blockchain Data:', err.response?.data || err.message);
         if (err.response && err.response.status === 401) {
           localStorage.removeItem('token'); // Clear invalid token
           window.location.href = '/login'; // Redirect to login

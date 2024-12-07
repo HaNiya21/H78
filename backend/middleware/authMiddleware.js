@@ -2,21 +2,20 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 const authMiddleware = (req, res, next) => {
-  const token = req.header('Authorization')?.replace('Bearer ', '');
-
+  const token = req.headers.authorization?.split(' ')[1];
   if (!token) {
-    console.log('No token provided');
-    return res.status(401).json({ message: 'No token, authorization denied' });
+    console.error('No token provided');
+    return res.status(401).json({ message: 'Authentication token missing' });
   }
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    console.log('Decoded Token:', decoded);
-    req.user = decoded.userId;
+    console.log('Token Decoded:', decoded); // Log decoded token for debugging
+    req.user = decoded;
     next();
   } catch (err) {
-    console.error('Token verification error:', err.message);
-    res.status(401).json({ message: 'Token is not valid' });
+    console.error('Invalid Token:', err.message);
+    return res.status(401).json({ message: 'Invalid token' });
   }
 };
 
