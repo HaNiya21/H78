@@ -1,101 +1,98 @@
-backend/
-├── server.js
-├── routes/
-│   ├── auth.js
-│   └── data.js
-├── models/
-│   └── User.js
-├── middleware/
-│   └── authMiddleware.js
-└── config/
-    └── db.js
-├── .env
-├── script/
-│   ├── createTestUser.js
+# H78
 
+## Overview
+H78 is a healthcare-focused web application built using the MERN stack (MongoDB, Express.js, React, and Node.js). It provides user authentication, interactive charts powered by D3.js, and insights into emerging healthcare technologies. The application is hosted on a single server with NGINX serving the frontend and proxying API calls to the backend.
 
-frontend/
-├── src/
-│   ├── components/
-│   │   ├── Login.js
-│   │   ├── Dashboard.js
-│   │   ├── Summary.js
-│   │   ├── Reports.js
-│   │   └── Navbar.js
-│   ├── App.js
-│   └── index.js
-│   └── setupTest.js
-├── package.json
-├── .env
+## Features
+- **User Authentication**: Secure login with JWT.
+- **Dashboard**: Summaries and technical descriptions of healthcare innovations.
+- **Dynamic Charts**: Interactive charts on Summary and Reports pages, using data retrieved via HTTP GET requests.
+- **Accessibility**: ADA/WCAG-compliant design with ARIA roles and keyboard navigation.
 
+## Technology Stack
+- **Frontend**: React with React Router for navigation.
+- **Backend**: Node.js with Express.js.
+- **Database**: MongoDB.
+- **Authentication**: JWT.
+- **Charting**: D3.js.
+- **Server**: NGINX to serve the frontend and proxy backend requests.
 
-# Getting Started with Create React App
+## Folder Structure
+```plaintext
+H78/
+|-- backend/
+|   |-- server.js
+|   |-- routes/
+|   |   |-- auth.js
+|   |   |-- data.js
+|   |-- models/
+|   |   |-- User.js
+|   |-- middleware/
+|   |   |-- authMiddleware.js
+|   |-- config/
+|   |   |-- db.js
+|   |-- script/
+|   |   |-- createTestUser.js
+|   |-- .env
+|-- frontend/
+|   |-- src/
+|   |   |-- components/
+|   |   |   |-- Login.js
+|   |   |   |-- Dashboard.js
+|   |   |   |-- Summary.js
+|   |   |   |-- Reports.js
+|   |   |-- App.js
+|   |   |-- index.js
+|   |   |-- setupTest.js
+|   |-- package.json
+|   |-- .env
+```
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Prerequisites
+- Node.js installed.
+- MongoDB instance running locally or remotely.
+- NGINX installed on the server for deployment.
 
-## Available Scripts
+## Installation and Running Locally
 
-In the project directory, you can run:
+### Backend Setup
+1. Navigate to the `backend` directory:
+   ```bash
+   cd backend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the backend server:
+   ```bash
+   node server.js
+   ```
+   The backend runs on port `3000`.
 
-### `npm start`
+### Frontend Setup
+1. Navigate to the `frontend` directory:
+   ```bash
+   cd ../frontend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Build the frontend:
+   ```bash
+   npm run build
+   ```
+4. To view the app locally, you can use a simple HTTP server to serve the `build` folder or integrate with the backend for a full-stack setup.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Deployment Instructions
+1. Build the frontend:
+   ```bash
+   cd frontend
+   npm run build
+   ```
+2. Configure NGINX:
+   - Serve the frontend build files on port `80`.
+   - Proxy API requests to the backend server on port `3000`.
+3. Restart NGINX to apply the configuration.
+4. Ensure the MongoDB instance is accessible and the backend server is running
