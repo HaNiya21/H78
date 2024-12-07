@@ -10,7 +10,7 @@ dotenv.config();
 
 // Enable CORS for all origins or restrict to a specific origin like your frontend's URL
 app.use(cors({
-  origin: 'http://localhost',  // Ensure this matches the port the frontend runs on (port 80 for NGINX setup)
+  origin: 'http://157.230.52.106',  // Ensure this matches the port the frontend runs on (port 80 for NGINX setup)
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
