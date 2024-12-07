@@ -47,5 +47,15 @@ router.get('/ai-use-cases', authMiddleware, (req, res) => {
   res.json(data);
 });
 
+// Mock Data for Blockchain in Healthcare (Reflecting Blockchain's role in data security)
+router.get('/blockchain-use', authMiddleware, (req, res) => {
+  const data = [
+    { application: "Patient Data Security", adoptionRate: 40 },  // Blockchain for healthcare data security
+    { application: "Medical Records Sharing", adoptionRate: 35 },
+    { application: "Drug Traceability", adoptionRate: 25 }
+  ];
+  res.json(data);
+});
+
 module.exports = router;
 

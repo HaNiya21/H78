@@ -22,6 +22,9 @@ function Navbar() {
           <Link to="/reports">Reports</Link>
         </li>
         <li>
+          <Link to="/blockchain">Blockchain</Link>
+        </li>
+        <li>
           <button onClick={handleLogout}>Logout</button>
         </li>
       </ul>

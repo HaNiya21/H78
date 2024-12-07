@@ -14,6 +14,8 @@ function Summary() {
         });
         console.log(res.data); // Display the fetched data
         setData(res.data); // Set state with the fetched data
+
+        
       } catch (err) {
         console.error(err);
         if (err.response && err.response.status === 401) {
