@@ -1,4 +1,3 @@
-// src/components/Summary.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import * as d3 from 'd3';
@@ -8,16 +7,22 @@ function Summary() {
 
   useEffect(() => {
     const fetchIoTDevicesData = async () => {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('token'); // Retrieve the token from localStorage
       try {
-        const res = await axios.get('/api/data/iot-devices-growth', {
-          headers: { 'x-auth-token': token },
+        const res = await axios.get('http://localhost:3000/api/data/iot-devices-growth', {
+          headers: { Authorization: `Bearer ${token}` }, // Add Authorization header
         });
-        setData(res.data);
+        console.log(res.data); // Display the fetched data
+        setData(res.data); // Set state with the fetched data
       } catch (err) {
         console.error(err);
+        if (err.response && err.response.status === 401) {
+          localStorage.removeItem('token'); // Clear invalid token
+          window.location.href = '/login'; // Redirect to login
+        }
       }
     };
+    
     fetchIoTDevicesData();
   }, []);
 

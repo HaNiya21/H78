@@ -1,7 +1,9 @@
 // routes/data.js
 const express = require('express');
 const router = express.Router();
-const authMiddleware = require('../middleware/authMiddleware');  // Correctly import authMiddleware
+const auth = require('../middleware/authMiddleware'); 
+const authMiddleware = require('../middleware/authMiddleware');
+
 
 // Define your protected route
 router.get('/protected-data', authMiddleware, (req, res) => {
@@ -12,6 +14,9 @@ router.get('/chart-data', authMiddleware, async (req, res) => {
   // Fetch data from MongoDB or any other source
   const chartData = await getChartData();
   res.json(chartData);
+});
+router.get('/test-auth', auth, (req, res) => {
+  res.json({ message: 'Token is valid', userId: req.user });
 });
 
 

@@ -20,7 +20,7 @@ app.use(express.json());
 
 // Use authentication and other routes
 app.use('/auth', authRoute);
-app.use('/api', dataRoute);
+//app.use('/api', dataRoute);
 app.use('/api/data', dataRoute); // Register the data routes
 
 const PORT = process.env.PORT || 3000;
