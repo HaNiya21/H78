@@ -7,10 +7,10 @@ function Reports() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    const fetchAgeGroupData = async () => {
+    const fetchAIUseCasesData = async () => {
       const token = localStorage.getItem('token');
       try {
-        const res = await axios.get('/api/data/telemedicine-age-group', {
+        const res = await axios.get('/api/data/ai-use-cases', {
           headers: { 'x-auth-token': token },
         });
         setData(res.data);
@@ -18,7 +18,7 @@ function Reports() {
         console.error(err);
       }
     };
-    fetchAgeGroupData();
+    fetchAIUseCasesData();
   }, []);
 
   useEffect(() => {
@@ -44,7 +44,7 @@ function Reports() {
       .select('#pieChart')
       .append('svg')
       .attr('role', 'img') // Accessibility
-      .attr('aria-label', 'Pie chart showing telemedicine usage by age group')
+      .attr('aria-label', 'Pie chart showing AI use cases in healthcare')
       .attr('width', width)
       .attr('height', height)
       .append('g')
@@ -53,7 +53,7 @@ function Reports() {
     // Set the color scale
     const color = d3
       .scaleOrdinal()
-      .domain(data.map((d) => d.ageGroup))
+      .domain(data.map((d) => d.category))
       .range(d3.schemeSet2);
 
     // Compute the position of each group on the pie
@@ -66,7 +66,7 @@ function Reports() {
       .data(data_ready)
       .join('path')
       .attr('d', d3.arc().innerRadius(0).outerRadius(radius))
-      .attr('fill', (d) => color(d.data.ageGroup))
+      .attr('fill', (d) => color(d.data.category))
       .attr('stroke', 'white')
       .style('stroke-width', '2px')
       .style('opacity', 0.7);
@@ -76,7 +76,7 @@ function Reports() {
       .selectAll('whatever')
       .data(data_ready)
       .join('text')
-      .text((d) => `${d.data.ageGroup} (${d.data.percentage}%)`)
+      .text((d) => `${d.data.category} (${d.data.percentage}%)`)
       .attr('transform', (d) => {
         const _d = d3.arc().innerRadius(0).outerRadius(radius).centroid(d);
         return `translate(${_d[0]},${_d[1]})`;
@@ -90,10 +90,10 @@ function Reports() {
       <h1>Reports</h1>
       <div id="pieChart"></div>
       <p>
-        <strong>Explanation:</strong> This chart displays the distribution of telemedicine usage across different age groups. It reveals that the 30-49 age group has the highest adoption rate, indicating the importance of telehealth services for working-age adults.
+        <strong>Explanation:</strong> This chart displays the distribution of AI use cases in healthcare. The use cases include diagnostics, patient management, hospital administration, and treatment recommendations, as discussed in the referenced article.
       </p>
       <p>
-        <strong>Data Source:</strong> Data derived from the article "<a href="https://www.health.harvard.edu/blog/the-future-of-healthcare-advancements-in-telemedicine-202106152462" target="_blank" rel="noopener noreferrer">The Future of Healthcare: Advancements in Telemedicine</a>".
+        <strong>Data Source:</strong> Data interpreted from the article "<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7732404/" target="_blank" rel="noopener noreferrer">Emerging Healthcare Technologies</a>".
       </p>
     </main>
   );

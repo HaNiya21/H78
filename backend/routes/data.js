@@ -14,26 +14,33 @@ router.get('/chart-data', authMiddleware, async (req, res) => {
   res.json(chartData);
 });
 
-// Telemedicine Visits Over Time
-router.get('/telemedicine-visits', auth, (req, res) => {
+
+
+// Mock Data for Summary.js Chart - IoT Devices Growth
+router.get('/iot-devices-growth', authMiddleware, (req, res) => {
   const data = [
-    { month: 'Jan 2021', visits: 100 },
-    { month: 'Feb 2021', visits: 120 },
-    // ... more data points
-    { month: 'Dec 2022', visits: 300 },
+    { year: "2015", devices: 500 },
+    { year: "2016", devices: 800 },
+    { year: "2017", devices: 1200 },
+    { year: "2018", devices: 1700 },
+    { year: "2019", devices: 2500 },
+    { year: "2020", devices: 4000 },
+    { year: "2021", devices: 5200 },
+    { year: "2022", devices: 7000 }
   ];
   res.json(data);
 });
 
-// Telemedicine Usage by Age Group
-router.get('/telemedicine-age-group', auth, (req, res) => {
+// Mock Data for Reports.js Chart - AI Use Cases in Healthcare
+router.get('/ai-use-cases', authMiddleware, (req, res) => {
   const data = [
-    { ageGroup: '18-29', percentage: 25 },
-    { ageGroup: '30-49', percentage: 35 },
-    { ageGroup: '50-64', percentage: 25 },
-    { ageGroup: '65+', percentage: 15 },
+    { category: "Diagnostics", percentage: 30 },
+    { category: "Treatment Recommendations", percentage: 25 },
+    { category: "Patient Management", percentage: 20 },
+    { category: "Hospital Administration", percentage: 25 }
   ];
   res.json(data);
 });
 
 module.exports = router;
+

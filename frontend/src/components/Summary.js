@@ -7,10 +7,10 @@ function Summary() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    const fetchVisitsData = async () => {
+    const fetchIoTDevicesData = async () => {
       const token = localStorage.getItem('token');
       try {
-        const res = await axios.get('/api/data/telemedicine-visits', {
+        const res = await axios.get('/api/data/iot-devices-growth', {
           headers: { 'x-auth-token': token },
         });
         setData(res.data);
@@ -18,7 +18,7 @@ function Summary() {
         console.error(err);
       }
     };
-    fetchVisitsData();
+    fetchIoTDevicesData();
   }, []);
 
   useEffect(() => {
@@ -43,17 +43,17 @@ function Summary() {
       .attr('role', 'img') // Accessibility
       .attr('width', width + margin.left + margin.right)
       .attr('height', height + margin.top + margin.bottom)
-      .attr('aria-label', 'Line chart showing telemedicine visits over time')
+      .attr('aria-label', 'Line chart showing growth of IoT devices in healthcare')
       .append('g')
       .attr('transform', `translate(${margin.left},${margin.top})`);
   
     // Parse the date / time
-    const parseTime = d3.timeParse('%b %Y');
+    const parseTime = d3.timeParse('%Y');
   
     // Format the data
     data.forEach((d) => {
-      d.date = parseTime(d.month);
-      d.visits = +d.visits;
+      d.date = parseTime(d.year);
+      d.devices = +d.devices;
     });
   
     // Set the scales
@@ -64,7 +64,7 @@ function Summary() {
   
     const y = d3
       .scaleLinear()
-      .domain([0, d3.max(data, (d) => d.visits)])
+      .domain([0, d3.max(data, (d) => d.devices)])
       .range([height, 0]);
   
     // Add the x-axis
@@ -80,7 +80,7 @@ function Summary() {
     svg
       .append('path')
       .datum(data)
-      .attr('fill', 'none') // Corrected here
+      .attr('fill', 'none')
       .attr('stroke', '#ff6600')
       .attr('stroke-width', 2)
       .attr(
@@ -88,7 +88,7 @@ function Summary() {
         d3
           .line()
           .x((d) => x(d.date))
-          .y((d) => y(d.visits))
+          .y((d) => y(d.devices))
       );
   
     // Add labels and title for accessibility
@@ -97,7 +97,7 @@ function Summary() {
       .attr('x', width / 2)
       .attr('y', height + margin.bottom - 10)
       .attr('text-anchor', 'middle')
-      .text('Month');
+      .text('Year');
   
     svg
       .append('text')
@@ -105,19 +105,18 @@ function Summary() {
       .attr('x', -height / 2)
       .attr('y', -margin.left + 15)
       .attr('text-anchor', 'middle')
-      .text('Number of Visits');
+      .text('Number of IoT Devices');
   };
-  
 
   return (
     <main>
       <h1>Summary</h1>
-      <div id="chart" role="img" aria-label="Telemedicine visits over time"></div>
+      <div id="chart" role="img" aria-label="Growth of IoT devices in healthcare"></div>
       <p>
-        <strong>Explanation:</strong> This chart illustrates the significant growth in telemedicine visits over the past two years, particularly during the COVID-19 pandemic. The data highlights how telemedicine has become an essential component of healthcare delivery.
+        <strong>Explanation:</strong> This chart illustrates the significant growth of IoT devices in healthcare over the past decade. The adoption of wearable devices and smart sensors has improved personalized care and remote patient monitoring.
       </p>
       <p>
-        <strong>Data Source:</strong> Based on data interpreted from the article "<a href="https://www.health.harvard.edu/blog/the-future-of-healthcare-advancements-in-telemedicine-202106152462" target="_blank" rel="noopener noreferrer">The Future of Healthcare: Advancements in Telemedicine</a>".
+        <strong>Data Source:</strong> Data interpreted from the article "<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7732404/" target="_blank" rel="noopener noreferrer">Emerging Healthcare Technologies</a>".
       </p>
     </main>
   );

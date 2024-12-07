@@ -1,24 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'; // Updated imports
+import Login from './components/Login';
+import Dashboard from './components/Dashboard';
+import Summary from './components/Summary';
+import Reports from './components/Reports';
 
 function App() {
+  const isAuthenticated = localStorage.getItem('token'); // Check if JWT token is available
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="/dashboard"
+          element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/summary"
+          element={isAuthenticated ? <Summary /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/reports"
+          element={isAuthenticated ? <Reports /> : <Navigate to="/login" />}
+        />
+        {/* Default redirection */}
+        <Route path="/" element={<Navigate to="/login" />} />
+      </Routes>
+    </Router>
   );
 }
 
