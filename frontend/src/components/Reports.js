@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import * as d3 from 'd3';
+import '../index.css';
 
 function Reports() {
   const [data, setData] = useState([]);
