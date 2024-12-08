@@ -9,7 +9,7 @@ function Reports() {
     const fetchAIUseCasesData = async () => {
       const token = localStorage.getItem('token');
       try {
-        const res = await axios.get('http://157.230.52.106:3000/api/data/ai-use-cases', {
+        const res = await axios.get('/api/data/ai-use-cases', {
           headers: { Authorization: `Bearer ${token}` },
         });
         console.log('API Response:', res.data);
