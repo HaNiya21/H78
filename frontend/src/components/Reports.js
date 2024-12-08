@@ -10,7 +10,7 @@ function Reports() {
       const token = localStorage.getItem('token');
       try {
         const res = await axios.get('/api/data/ai-use-cases', {
-          headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+          headers: { Authorization: `Bearer ${token}` },
         });
         console.log('API Response:', res.data);
         setData(res.data);

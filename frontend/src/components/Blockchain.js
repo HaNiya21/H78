@@ -11,7 +11,7 @@ function Blockchain() {
       try {
         // Corrected the URL to match the backend route
         const res = await axios.get('/api/data/blockchain-use', {
-          headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+          headers: { Authorization: `Bearer ${token}` },
         });
         console.log('Fetched Blockchain Data:', res.data); // Display the fetched data
         setBlockchainData(res.data); // Set state with the fetched data
