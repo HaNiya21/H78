@@ -1,7 +1,7 @@
 // routes/data.js
 const express = require('express');
 const router = express.Router();
-const auth = require('../middleware/authMiddleware'); 
+//const auth = require('../middleware/authMiddleware'); 
 const authMiddleware = require('../middleware/authMiddleware');
 
 
@@ -23,6 +23,7 @@ router.get('/test-auth', auth, (req, res) => {
 
 // Mock Data for Summary.js Chart - IoT Devices Growth
 router.get('/iot-devices-growth', authMiddleware, (req, res) => {
+  console.log('Request Authenticated');
   const data = [
     { year: "2015", devices: 500 },
     { year: "2016", devices: 800 },
@@ -38,6 +39,7 @@ router.get('/iot-devices-growth', authMiddleware, (req, res) => {
 
 // Mock Data for Reports.js Chart - AI Use Cases in Healthcare
 router.get('/ai-use-cases', authMiddleware, (req, res) => {
+  console.log('Request Authenticated');
   const data = [
     { category: "Diagnostics", percentage: 30 },
     { category: "Treatment Recommendations", percentage: 25 },
@@ -49,6 +51,7 @@ router.get('/ai-use-cases', authMiddleware, (req, res) => {
 
 // Mock Data for Blockchain in Healthcare (Reflecting Blockchain's role in data security)
 router.get('/blockchain-use', authMiddleware, (req, res) => {
+  console.log('Request Authenticated');
   const data = [
     { application: "Patient Data Security", adoptionRate: 40 },  // Blockchain for healthcare data security
     { application: "Medical Records Sharing", adoptionRate: 35 },

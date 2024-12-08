@@ -10,7 +10,7 @@ function Summary() {
       const token = localStorage.getItem('token'); // Retrieve the token from localStorage
       try {
         const res = await axios.get('/api/data/iot-devices-growth', {
-          headers: { Authorization: `Bearer ${token}` }, // Add Authorization header
+          headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }, // Add Authorization header
         });
         console.log('Fetched Data:', res.data); // Display the fetched data
         setData(res.data); // Set state with the fetched data
